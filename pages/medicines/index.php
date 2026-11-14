@@ -1,6 +1,9 @@
 <?php
 include "../../config/database.php";
 
+$id = $_GET("SELECT * FROM medicines ORDER BY id ASC");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +13,8 @@ include "../../config/database.php";
     <title>Data Obat-obat</title>
 </head>
 <body>
+    <?php include "../../components/landing/header.php" ?>
     
+    <?php include "../../components/landing/footer.php" ?>
 </body>
 </html>
