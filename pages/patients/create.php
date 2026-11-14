@@ -1,96 +1,67 @@
 <?php
 include "../../config/database.php";
 
-    $message = "";
-if ($medical = ""){
-    $message = "Kode obat harus diisi.";
-    return;
-}
-
-if (isset($_POST)){
-   global $conn;
-   $stmt= $conn->prepare("INSERT INTO patients (medical_record_no, full_name, email, phone, gender, birth_date, blood_type, allergies, pain_level, appointment_at, complaint) 
-                          VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-
-   $mecord_no = "medical_record_no";
-   $full_name = "full_name";
-   $email = "email";
-   $phone = "phone";
-   $gender = "gender";
-   $birth_date = "birth_date";
-   $blood_type = "blood_type";
-   $allergies = "allergies";
-   $pain_level = "pain_level";
-   $appointment_at = "appointment_at";
-   $complaint = "complaint";
-
-   $stmt->bind_param("sssssssiss", $mecord_no, $full_name, $email, $phone, $gender, $birth_date, $blood_type, $allergies, $pain_level, $appointment_at, $complaint);
-   $stmt->execute();
-   $stmt->close();
-
-   $message = "Data berhasil dimasukkan";
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Patients</title>
 </head>
+
 <body>
     <?php include "../../components/landing/header.php" ?>
 
-    <form>
+    <form method="POST" action="../../actions/patients/store.php">
         <h1>Input Medicines Data</h1>
-        <label>Medical Record Number</label>
-        <input type="text" id="medical_record_no" name="medical_record_no">
+        <br><label>Medical Record Number</label>
+        <br><input type="text" id="medical_record_no" name="medical_record_no">
 
-        <label>Full Name</label>
-        <input type="text" id="full_name" name="full_name">
+        <br><label>Full Name</label>
+        <br><input type="text" id="full_name" name="full_name">
 
-        <label>Email</label>
-        <input type="text" id="email" name="email">
+        <br><label>Email</label>
+        <br><input type="text" id="email" name="email">
 
-        <label>Phone</label>
-        <input type="text" id="phone" name="phone">
+        <br><label>Phone</label>
+        <br><input type="text" id="phone" name="phone">
 
-        <label>Gender</label>
-        <select name="gender" id="gender">
-            <input type="radio" name="M" id="M">
-            <input type="radio" name="F" id="F">
+        <br><label>Gender</label>
+        <br><select name="gender" id="gender">
+            <option value="M">M</option>
+            <option value="F">F</option>
         </select>
 
-        <label>Birth Date</label>
-        <input type="date" name="birth_date" id="birth_date">
+        <br><label>Birth Date</label>
+        <br><input type="date" name="birth_date" id="birth_date">
 
-        <label>Blood Type</label>
-        <select name="blood_type" id="blood_type">
+        <br><label>Blood Type</label>
+        <br><select name="blood_type" id="blood_type">
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="AB">AB</option>
             <option value="O">O</option>
         </select>
 
-        <label>Allergies</label>
-        <select name="allergies" id="allergies">
-            <input type="check" name="chocolate">
-            <input type="check" name="cold">
-            <input type="check" name="dust">
-            <input type="check" name="seafood">
-            <input type="check" name="milk">
+        <br><label>Allergies</label>
+        <br><select name="allergies" id="allergies">
+            <option value="Chocolate">Chocolate</option>
+            <option value="Milk">Milk</option>
+            <option value="Dust">Dust</option>
+            <option value="Cold">Cold</option>
         </select>
 
-        <label>Pain Level</label>
-            <input type="number" name="pain_level" id="pain_level">
+        <br><label>Pain Level</label>
+        <br><input type="number" name="pain_level" id="pain_level">
 
-        <label>Appointment at</label>
-            <input type="date" name="appointment_at" id="appointment_at">
+        <br><label>Appointment at</label>
+        <br><input type="date" name="appointment_at" id="appointment_at">
 
-        <label>Complaint</label>
-            <input type="text" name="complaint" id="complaint">
-
+        <br><label>Complaint</label>
+        <br><input type="text" name="complaint" id="complaint">
+        <br><button type="submit" name="submit" id="submit" method="POST">Simpan</button>
     </form>
 
     <?php include "../../components/landing/footer.php" ?>

@@ -1,7 +1,7 @@
 <?php
 include "../../config/database.php";
 
-$id = $_GET("SELECT * FROM medicines ORDER BY id ASC");
+// $id = $_GET("SELECT * FROM medicines ORDER BY id ASC");
 
 
 ?>
@@ -14,7 +14,7 @@ $id = $_GET("SELECT * FROM medicines ORDER BY id ASC");
 </head>
 <body>
     <?php include "../../components/landing/header.php" ?>
-    
+
     <?php include "../../components/landing/footer.php" ?>
 </body>
 </html>

@@ -1,27 +1,6 @@
 <?php
 include "../../config/database.php";
-
-    $message = "";
-
-if (isset($_POST)){
-   global $conn;
-   $stmt= $conn->prepare("INSERT INTO medicines (medicine_code, medicine_name, type, usage_rule, side_effects, price, stock, expired_date, need_prescription, description) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-   $mcode = "medicine_code";
-   $mname = "medicine_name";
-   $type = "type";
-   $rule = "usage_rule";
-   $effects = "side_effects";
-   $price = "price";
-   $stock = "stock";
-   $exdate = "expired_date";
-   $prescription = "need_prescription";
-   $description = "description";
-   $stmt->bind_param("sssssiisis", $mcode, $mname, $type, $rule, $effects, $price, $stock, $exdate, $prescription, $description);
-   $stmt->execute();
-   $stmt->close();
-
-   $message = "Data berhasil dimasukkan";
-}
+// include "../../actions/medicines/store.php";
 
 ?>
 <!DOCTYPE html>
@@ -34,41 +13,41 @@ if (isset($_POST)){
 <body>
     <?php include "../../components/landing/header.php" ?>
 
-    <form>
+    <form method="POST" action="../../actions/medicines/store.php">
         <h1>Input Medicines Data</h1>
-        <label>Medicine Code</label>
-        <input type="text" id="medicine_code" name="medicine_code">
-        <label>Medicine Name</label>
-        <input type="text" id="medicine_name" name="medicine_name">
-        <label>Medicine Type</label>
-        <select name="type" id="type">
-            <option value="Tablet">Tablet</option>
-            <option value="Syrup">Syrup</option>
-            <option value="Capsule">Capsule</option>
-            <option value="Ointment">Ointment</option>
-        </select>
-        <label>Usage Rule</label>
-        <select name="usage_rule" id="usage_rule">
-            <input type="radio" name="Before Meal" id="Before Meal">
-            <input type="radio" name="After Meal" id="After Meal">
-        </select>
-        <label>Side Effects</label>
-        <select name="side_effects" id="side_effects">
-            <input type="check">Sleepy</input>
-            <input type="check">Hunger</input>
-            <input type="check">Dehidrate</input>
-        </select>
-        <label>Input Price: </label>
-        <input type="number" name="price" id="price">
-        <label>Input Stock: </label>
-        <input type="number" name="stock" id="stock">
-        <label>Expired At: </label>
-        <input type="date" name="expired_date" id="expired_date">
-        <label>Need Prescription: </label>
-        <input type="check" name="need_prescription" id="need_prescription">
-        <label>Description</label>
-        <input type="text" name="description" id="description">
-        <button type="submit" name="submit" id="submit" method="POST">Simpan</button>
+        <br><label>Medicine Code</label>
+        <br><input type="text" id="medicine_code" name="medicine_code">
+        <br><label>Medicine Name</label>
+        <br><input type="text" id="medicine_name" name="medicine_name">
+        <br><label>Medicine Type</label>
+        <br><select name="type" id="type">
+                <option value="Tablet">Tablet</option>
+                <option value="Syrup">Syrup</option>
+                <option value="Capsule">Capsule</option>
+                <option value="Ointment">Ointment</option>
+            </select>
+        <br><label>Usage Rule</label>
+        <br><select name="usage_rule" id="usage_rule">
+                <option value="After Meal">After Meal</option>
+                <option value="Before Meal">Before Meal</option>
+            </select>
+        <br><label>Side Effects</label>
+        <br><select name="side_effects" id="side_effects">
+                <option value="Hunger">Hunger</option>
+                <option value="Dehydrate">Dehydrate</option>
+                <option value="Sleepy">Sleepy</option>
+            </select>
+        <br><label>Input Price: </label>
+        <br><input type="number" name="price" id="price">
+        <br><label>Input Stock: </label>
+        <br><input type="number" name="stock" id="stock">
+        <br><label>Expired At: </label>
+        <br><input type="date" name="expired_date" id="expired_date">
+        <br><label>Need Prescription: </label>
+        <br><input type="check" name="need_prescription" id="need_prescription">
+        <br><label>Description</label>
+        <br><input type="text" name="description" id="description">
+        <br><button type="submit" name="submit" id="submit" method="POST">Simpan</button>
     </form>
     
 
