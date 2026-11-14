@@ -19,7 +19,7 @@ if (isset($_POST)){
    $appointment_at = $_POST['appointment_at'];
    $complaint = $_POST['complaint'];
 
-   $stmt->bind_param("ssissssiss", $mecord_no, $full_name, $email, $phone, $gender, $birth_date, $blood_type, $allergies, $pain_level, $appointment_at, $complaint);
+   $stmt->bind_param("ssssssssiss", $mecord_no, $full_name, $email, $phone, $gender, $birth_date, $blood_type, $allergies, $pain_level, $appointment_at, $complaint);
    $stmt->execute();
    $stmt->close();
 

@@ -1,20 +1,20 @@
 <?php 
     $message = "";
-    if (isset($_POST)){
+    if (isset($_GET)){
     global $conn;
-    $stmt= $conn->prepare("UPDATE medicines (medicine_code, medicine_name, type, usage_rule, side_effects, price, stock, expired_date, need_prescription, description) 
+    $stmt= mysqli_prepare($conn,"UPDATE medicines (medicine_code, medicine_name, type, usage_rule, side_effects, price, stock, expired_date, need_prescription, description) 
                             SET VALUES (medicine_code = ?, medicine_name = ?,  type = ?, usage_rule = ?, side_effects = ?, price = ?, stock = ?, expired_date = ?, need_prescription = ?, description = ?)");
                             
-    $mcode = "medicine_code";
-    $mname = "medicine_name";
-    $type = "type";
-    $rule = "usage_rule";
-    $effects = "side_effects";
-    $price = "price";
-    $stock = "stock";
-    $exdate = "expired_date";
-    $prescription = "need_prescription";
-    $description = "description";
+    $mcode = $_POST['medicine_code'];
+    $mname = $_POST['medicine_name'];
+    $type = $_POST['type'];
+    $rule = $_POST['usage_rule'];
+    $effects = $_POST['side_effects'];
+    $price = $_POST['price'];
+    $stock = $_POST['stock'];
+    $exdate = $_POST['expired_date'];
+    $prescription = $_POST['need_prescription'];
+    $description = $_POST['description'];
     $stmt->bind_param("sssssiisis", $mcode, $mname, $type, $rule, $effects, $price, $stock, $exdate, $prescription, $description);
     $stmt->execute();
     $stmt->close();
@@ -65,7 +65,7 @@
         <input type="check" name="need_prescription" id="need_prescription">
         <label>Description</label>
         <input type="text" name="description" id="description">
-        <button type="submit" name="submit" id="submit" method="POST">Simpan</button>
+        <button type="submit" name="submit" id="submit" method="GET">Simpan</button>
     </form>
 </body>
 </html>

@@ -2,20 +2,20 @@
     $message = "";
     if (isset($_GET)){
     global $conn;
-    $stmt= $conn->prepare("UPDATE patients (medical_record_no, full_name, email, phone, gender, birth_date, blood_type, allergies, pain_level, appointment_at, complaint)
+    $stmt= mysqli_prepare($conn,"UPDATE patients (medical_record_no, full_name, email, phone, gender, birth_date, blood_type, allergies, pain_level, appointment_at, complaint)
                             SET VALUES (medical_record_no = ?, full_name = ?,  email = ?, phone = ?, gender = ?, birth_date = ?, blood_type = ?, allergies = ?, pain_level = ?, appointment_at = ?, complaint = ?)");
                             
-    $mecord_no = "medical_record_no";
-    $full_name = "full_name";
-    $email = "email";
-    $phone = "phone";
-    $gender = "gender";
-    $birth_date = "birth_date";
-    $blood_type = "blood_type";
-    $allergies = "allergies";
-    $pain_level = "pain_level";
-    $appointment_at = "appointment_at";
-    $complaint = "complaint";
+    $mecord_no = $_POST['medical_record_no'];
+    $full_name = $_POST['full_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $birth_date = $_POST['birth_date'];
+    $blood_type = $_POST['blood_type'];
+    $allergies = $_POST['allergies'];
+    $pain_level = $_POST['pain_level'];
+    $appointment_at = $_POST['appointment_at'];
+    $complaint = $_POST['complaint'];
    
     $stmt->bind_param("sssssssiss", $mecord_no, $full_name, $email, $phone, $gender, $birth_date, $blood_type, $allergies, $pain_level, $appointment_at, $complaint);
     $stmt->execute();
@@ -82,7 +82,7 @@
 
         <label>Complaint</label>
             <input type="text" name="complaint" id="complaint">
-        <button type="submit" name="submit" id="submit" method="POST">Update</button>
+        <button type="submit" name="submit" id="submit" method="GET">Update</button>
     </form>
 
     <?php include "../../components/landing/footer.php" ?>
